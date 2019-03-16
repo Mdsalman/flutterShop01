@@ -1,3 +1,2 @@
 # flutterShop01
-our first eshop using flutter
-22s
+our first eshop using flutter...
