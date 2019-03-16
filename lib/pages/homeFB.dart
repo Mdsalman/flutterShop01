@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:layouts_flutter/hotel_card_screen.dart';
 //import 'card_item.dart';
 import 'cart.dart';
-import 'package:eShop/components/horizontal_listview.dart';
+import 'package:FLUTTERSHOP01/components/horizontal_listview.dart';
 import 'login_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eShop/components/datamodels.dart';
