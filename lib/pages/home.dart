@@ -292,7 +292,7 @@ class ItemTile extends StatelessWidget {
                         Container(
                           width: 150,
                           child: new Text(
-                            'SAR $itemPrice',
+                            'SAR $itemPrice Only',
                             style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.red,

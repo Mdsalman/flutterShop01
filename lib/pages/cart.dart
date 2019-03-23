@@ -15,7 +15,7 @@ class _CartState extends State<Cart > {
       appBar: AppBar(
         elevation: 2,
         backgroundColor: Color.fromARGB(255, 251, 200, 0),
-        title: Text('Your Orders', style: TextStyle(color: Colors.black),),
+        title: Text('My Orders', style: TextStyle(color: Colors.black),),
         actions: <Widget>[
           IconButton(
               icon: Icon(
