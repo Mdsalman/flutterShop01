@@ -165,19 +165,19 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => new Cart()));
-              },
-              child: ListTile(
-                title: Text('Basket'),
-                leading: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.red,
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => new Cart()));
+            //   },
+            //   child: ListTile(
+            //     title: Text('Basket'),
+            //     leading: Icon(
+            //       Icons.shopping_cart,
+            //       color: Colors.red,
+            //     ),
+            //   ),
+            // ),
 
             InkWell(
               onTap: () {},
@@ -292,7 +292,7 @@ class ItemTile extends StatelessWidget {
                         Container(
                           width: 150,
                           child: new Text(
-                            'SAR $itemPrice',
+                            'SAR $itemPrice Only',
                             style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.red,
