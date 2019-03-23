@@ -8,7 +8,7 @@ import 'package:eShop/main.dart';
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
   final BaseAuth auth;
-
+//this is comment
   @override
   State<StatefulWidget> createState() => new _RootPageState();
 }
