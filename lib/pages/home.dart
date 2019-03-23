@@ -165,19 +165,19 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => new Cart()));
-              },
-              child: ListTile(
-                title: Text('Basket'),
-                leading: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.red,
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(context,
+            //         MaterialPageRoute(builder: (context) => new Cart()));
+            //   },
+            //   child: ListTile(
+            //     title: Text('Basket'),
+            //     leading: Icon(
+            //       Icons.shopping_cart,
+            //       color: Colors.red,
+            //     ),
+            //   ),
+            // ),
 
             InkWell(
               onTap: () {},
