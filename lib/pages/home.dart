@@ -6,10 +6,48 @@ import 'package:flutter/material.dart';
 import 'cart.dart';
 import 'package:eShop/components/horizontal_listview.dart';
 import 'login_page.dart';
+import 'package:eShop/components/Item.dart';
+import 'package:eShop/service/firebase_firestore_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
+
+  List<Item> items;
+  FirebaseFirestoreService db = new FirebaseFirestoreService();
+
+  StreamSubscription<QuerySnapshot> noteSub;
+
+  @override
+  void initState() {
+    super.initState();
+
+    items = new List();
+
+    noteSub?.cancel();
+    noteSub = db.getItemList().listen((QuerySnapshot snapshot) {
+      final List<Item> notes = snapshot.documents
+          .map((documentSnapshot) => Item.fromMap(documentSnapshot.data))
+          .toList();
+
+      setState(() {
+        this.items = notes;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    noteSub?.cancel();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -34,82 +72,22 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: new ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Text("Categories", style: TextStyle(fontWeight: FontWeight.bold ),),
-          ),
-
-          HorizontalList(),
-
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Text("Food List", style: TextStyle(fontWeight: FontWeight.bold ),),
-          ),
-          new ItemTile(
-            itemName: 'Albaik Chicken',
-            imagePath: 'Images/Food1.png',
-            itemDesc: "4 pcs chicken Legs + Fries + a Garlic Sauce",
-            itemPrice: "13.50",
-          ),
-          Divider(
+      body: new ListView.builder(
+        itemCount: items.length,
+        padding: const EdgeInsets.all(15.0),
+        itemBuilder: (context, position){
+          return Column(children: <Widget>[
+             Divider(
             height: 5,
           ),
           new ItemTile(
-            itemName: 'Albaik Prawn',
-            imagePath: 'Images/Food2.png',
-            itemDesc: "8 pcs Prawns + fries + Cocktail Sauce ",
-            itemPrice: "24.50",
+            itemName: '${items[position].Name}',
+            imagePath: '${items[position].picture}',
+            itemDesc: '${items[position].Description}',
+            itemPrice: '${items[position].Price}',
           ),
-          Divider(
-            height: 5,
-          ),
-          new ItemTile(
-            itemName: 'Albaik IceCream',
-            imagePath: 'Images/Food6.png',
-            itemDesc: "Vanila IceCream + Strawberry toppings",
-            itemPrice: "4.50",
-          ),
-          Divider(
-            height: 5,
-          ),
-          new ItemTile(
-            itemName: 'Albaik Sandwitch',
-            imagePath: 'Images/Food4.png',
-            itemDesc: "2 Nuggets + Fries + vinegered cucumber",
-            itemPrice: "9.50",
-          ),
-          Divider(
-            height: 5,
-          ),
-          new ItemTile(
-            itemName: 'Albaik Shawrma',
-            imagePath: 'Images/Food5.png',
-            itemDesc: "smoked chopped chicken stuffed in bread",
-            itemPrice: "09.50",
-          ),
-          
-          Divider(
-            height: 5,
-          ),
-          new ItemTile(
-            itemName: 'Albaik Chicken',
-            imagePath: 'Images/Food1.png',
-            itemDesc: "smoked chopped chicken stuffed in bread",
-            itemPrice: "09.50",
-          ),
-          Divider(
-            height: 5,
-          ),
-          new ItemTile(
-            itemName: 'Albaik Chicken',
-            imagePath: 'Images/Food1.png',
-            itemDesc: "smoked chopped chicken stuffed in bread",
-            itemPrice: "09.50",
-          ),
-        ],
+          ],);
+        },
       ),
 
       drawer: Drawer(
@@ -259,6 +237,7 @@ class ItemTile extends StatelessWidget {
                 width: (MediaQuery.of(context).size.width) * 0.30,
                 height: 100,
                 child: Image.asset('$imagePath', fit: BoxFit.fitWidth),
+                //child: DecorationImage(image: NetworkImage('$imagePath').toString(), fit: BoxFit.fitWidth )
               ),
               new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,7 +269,7 @@ class ItemTile extends StatelessWidget {
 
                       children: <Widget>[
                         Container(
-                          width: 150,
+                          width: 100,
                           child: new Text(
                             'SAR $itemPrice',
                             style: TextStyle(
@@ -310,7 +289,7 @@ class ItemTile extends StatelessWidget {
                           ),
                         ),
                         Divider(
-                          indent: 20
+                          indent: 15
                         ),
                          new Text(
                           '5',
