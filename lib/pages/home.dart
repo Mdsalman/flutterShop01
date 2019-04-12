@@ -236,8 +236,8 @@ class ItemTile extends StatelessWidget {
               SizedBox(
                 width: (MediaQuery.of(context).size.width) * 0.30,
                 height: 100,
-                child: Image.asset('$imagePath', fit: BoxFit.fitWidth),
-                //child: DecorationImage(image: NetworkImage('$imagePath').toString(), fit: BoxFit.fitWidth )
+                //child: Image.asset('$imagePath', fit: BoxFit.fitWidth),
+                child: Image.network('$imagePath')
               ),
               new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

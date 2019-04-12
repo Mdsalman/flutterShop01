@@ -4,6 +4,7 @@ class Item {
   String _description;
   String _price;
   String _picture;
+  int _itemCount = 0;
 
 
   Item(this._id, this._title, this._description, this._price, this._picture);
@@ -21,6 +22,7 @@ class Item {
   String get Description => _description;
   String get Price => _price;
   String get picture => _picture;
+  int get ItemCount => _itemCount;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
@@ -40,6 +42,6 @@ class Item {
     this._title = map['Name'];
     this._description = map['Description'];
     this._price = map['Price'];
-    this._picture = map['picture'];
+    this._picture = map['Picture'];
   }
 }
