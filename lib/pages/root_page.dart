@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:eShop/pages/login_page.dart';
 import 'package:eShop/authentication.dart';
 import 'home.dart';
+import 'adminhome.dart';
 import 'package:eShop/main.dart';
 
 
@@ -15,8 +16,11 @@ class RootPage extends StatefulWidget {
 
 enum AuthStatus { notSignedIn, signedIn }
 
+enum Role { admin, nonAdmin }
+
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
+  Role  role = Role.admin; //TODO from Waris: Incorporate claims for role
 
   @override
   void initState() {
@@ -36,7 +40,15 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.notSignedIn:
         return new LoginPage(auth: widget.auth);
       case AuthStatus.signedIn:
-        return new HomePage();
+        switch (role) {
+          case Role.nonAdmin:
+              return new HomePage();
+          case Role.admin:
+              return new AdminHomePage();
+          default:
+              return new HomePage();
+        }
+        
     }
   }
 }
