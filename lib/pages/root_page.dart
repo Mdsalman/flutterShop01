@@ -20,7 +20,7 @@ enum Role { admin, nonAdmin }
 
 class _RootPageState extends State<RootPage> {
   AuthStatus authStatus = AuthStatus.notSignedIn;
-  Role  role = Role.admin; //TODO from Waris: Incorporate claims for role
+  Role  role = Role.nonAdmin; //TODO from Waris: Incorporate claims for role
 
   @override
   void initState() {
